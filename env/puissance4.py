@@ -8,7 +8,7 @@ class puissance4(gym.Env):
     def __init__(self, switch_prob=0.5):
         self.env = make('connectx',
                         debug=False)
-        self.pair = [None, 'random']
+        self.pair = [None, 'negamax']
         self.trainer = self.env.train(self.pair)
         self.switch_prob = switch_prob
         

@@ -5,16 +5,16 @@ class Config(object):
     
     gamma = 0.99
     batch_size = 32
-    learning_rate = 1e-4
-    update_nb_iter = 200
+    learning_rate = 1e-2
+    update_nb_iter = 30
     
-    epsilon_final = 0.01
-    epsilon_start = 0.99
-    epsilon_decay = 200
+    epsilon_final = 0.1
+    epsilon_start = 0.5
+    epsilon_decay = 0.9999
 
     beta_start = 0.4
     beta_final = 1.         
-    beta_decay = 200        
+    beta_decay = 1.000001   
     
     w = 0.8             
     

@@ -12,11 +12,13 @@ class ModelDuelings(nn.Module):
         
         self.fc1 = nn.Linear(self.dim_space, 64)
         
-        self.advantage1 = nn.Linear(64, 64)
-        self.advantage2 = nn.Linear(64, self.nb_actions)
+        self.advantage1 = nn.Linear(64, 128)
+        self.advantage2 = nn.Linear(128, 256)
+        self.advantage3 = nn.Linear(256, self.nb_actions)
         
-        self.value1 = nn.Linear(64, 64)
-        self.value2 = nn.Linear(64, 1)
+        self.value1 = nn.Linear(64, 128)
+        self.value2 = nn.Linear(128, 256)
+        self.value3 = nn.Linear(256, 1)
         
     def forward(self, x):
 
@@ -26,9 +28,13 @@ class ModelDuelings(nn.Module):
         ad = self.advantage1(x)
         ad = F.relu(ad)
         ad = self.advantage2(ad)
+        ad = F.relu(ad)
+        ad = self.advantage3(ad)
         
         va = self.value1(x)
         va = F.relu(va)
         va = self.value2(va)
+        va = F.relu(va)
+        va = self.value3(va)
         
         return va + ad - ad.mean()
